@@ -1,135 +1,99 @@
 /* ================= */
+/* LOGIN */
+/* ================= */
+function openLogin() {
+  login.style.display = "flex";
+}
+
+function login() {
+  const u = user.value;
+  if (u.length < 3) {
+    showToast("Usuário inválido");
+    return;
+  }
+
+  localStorage.setItem("user", u);
+  login.style.display = "none";
+  showToast("Bem-vindo " + u);
+}
+
+/* ================= */
 /* DADOS */
 /* ================= */
-let favorites = JSON.parse(localStorage.getItem("fav")) || [];
+let fav = JSON.parse(localStorage.getItem("fav")) || [];
 
 const courses = [
-  { name: "HTML", desc: "Base da web" },
-  { name: "CSS", desc: "Estilo moderno" },
-  { name: "JavaScript", desc: "Interatividade" }
+  { name: "HTML", level: "Iniciante" },
+  { name: "CSS", level: "Iniciante" },
+  { name: "JavaScript", level: "Avançado" }
 ];
 
 /* ================= */
 /* RENDER */
 /* ================= */
-const list = document.getElementById("courseList");
+function render(listData) {
+  courseList.innerHTML = "";
 
-function render(data) {
-  list.innerHTML = "";
+  listData.forEach(c => {
+    const isFav = fav.includes(c.name);
 
-  data.forEach(c => {
-    const fav = favorites.includes(c.name);
-
-    list.innerHTML += `
+    courseList.innerHTML += `
       <div class="card">
         <h3>${c.name}</h3>
-        <p>${c.desc}</p>
-
-        <button onclick="openModal('${c.name}','${c.desc}')">
-          Ver
-        </button>
+        <p>${c.level}</p>
 
         <button onclick="toggleFav('${c.name}')">
-          ${fav ? "★" : "☆"}
+          ${isFav ? "★" : "☆"}
         </button>
       </div>
     `;
   });
 }
 
-render(courses);
-
-/* ================= */
-/* BUSCA */
-/* ================= */
-search.oninput = e => {
-  const val = e.target.value.toLowerCase();
-
-  const filtered = courses.filter(c =>
-    c.name.toLowerCase().includes(val)
-  );
-
-  render(filtered);
-};
-
 /* ================= */
 /* FAVORITOS */
 /* ================= */
 function toggleFav(name) {
-  if (favorites.includes(name)) {
-    favorites = favorites.filter(f => f !== name);
+  if (fav.includes(name)) {
+    fav = fav.filter(f => f !== name);
   } else {
-    favorites.push(name);
+    fav.push(name);
   }
 
-  localStorage.setItem("fav", JSON.stringify(favorites));
+  localStorage.setItem("fav", JSON.stringify(fav));
   render(courses);
+  renderFav();
 }
 
-/* ================= */
-/* MODAL */
-/* ================= */
-function openModal(title, desc) {
-  modal.style.display = "flex";
-  modalTitle.innerText = title;
-  modalDesc.innerText = desc;
-}
+function renderFav() {
+  favList.innerHTML = "";
 
-function closeModal() {
-  modal.style.display = "none";
-}
-
-/* ================= */
-/* CARROSSEL AUTO */
-/* ================= */
-const depo = ["Muito bom!", "Gostei!", "Top!"];
-let i = 0;
-
-function show() {
-  slide.innerText = depo[i];
-}
-
-function next() {
-  i = (i + 1) % depo.length;
-  show();
-}
-
-function prev() {
-  i = (i - 1 + depo.length) % depo.length;
-  show();
-}
-
-setInterval(next, 3000);
-show();
-
-/* ================= */
-/* SCROLL */
-/* ================= */
-function scrollToCourses() {
-  document.getElementById("courses").scrollIntoView({
-    behavior: "smooth"
+  fav.forEach(f => {
+    favList.innerHTML += `<div class="card">${f}</div>`;
   });
 }
 
 /* ================= */
-/* FORM */
+/* FILTRO */
 /* ================= */
-form.onsubmit = e => {
-  e.preventDefault();
+search.oninput = applyFilter;
+filter.onchange = applyFilter;
 
-  if (name.value.length < 3) {
-    showToast("Nome inválido");
-    return;
+function applyFilter() {
+  let data = courses;
+
+  if (search.value) {
+    data = data.filter(c =>
+      c.name.toLowerCase().includes(search.value.toLowerCase())
+    );
   }
 
-  if (!email.value.includes("@")) {
-    showToast("Email inválido");
-    return;
+  if (filter.value) {
+    data = data.filter(c => c.level === filter.value);
   }
 
-  showToast("Enviado!");
-  form.reset();
-};
+  render(data);
+}
 
 /* ================= */
 /* TOAST */
@@ -137,19 +101,9 @@ form.onsubmit = e => {
 function showToast(msg) {
   toast.innerText = msg;
   toast.style.display = "block";
-
-  setTimeout(() => {
-    toast.style.display = "none";
-  }, 2000);
+  setTimeout(() => toast.style.display = "none", 2000);
 }
 
-/* ================= */
-/* ANIMAÇÃO */
-/* ================= */
-window.addEventListener("scroll", () => {
-  document.querySelectorAll(".section").forEach(sec => {
-    if (sec.getBoundingClientRect().top < window.innerHeight - 50) {
-      sec.classList.add("active");
-    }
-  });
-});
+/* INIT */
+render(courses);
+renderFav();
