@@ -1,91 +1,114 @@
 /* ===================== */
-/* DADOS DINÂMICOS */
+/* FAKE API */
 /* ===================== */
 const courses = [
-  { title: "HTML & CSS", desc: "Aprenda a criar sites" },
-  { title: "JavaScript", desc: "Interatividade web" },
-  { title: "React", desc: "Front-end moderno" }
-];
-
-const testimonials = [
-  "Curso incrível!",
-  "Aprendi muito rápido",
-  "Muito didático!"
+  { title: "HTML", level: "Iniciante" },
+  { title: "CSS", level: "Intermediário" },
+  { title: "JavaScript", level: "Avançado" }
 ];
 
 /* ===================== */
-/* RENDERIZAÇÃO */
+/* RENDER */
 /* ===================== */
 const container = document.getElementById("courses-container");
 
-courses.forEach(course => {
-  const card = document.createElement("div");
-  card.classList.add("card");
-
-  card.innerHTML = `
-    <h3>${course.title}</h3>
-    <p>${course.desc}</p>
-  `;
-
-  container.appendChild(card);
-});
-
-/* ===================== */
-/* CARROSSEL */
-/* ===================== */
-let index = 0;
-
-function showSlide() {
-  document.getElementById("carousel-content").innerText = testimonials[index];
-}
-
-function nextSlide() {
-  index = (index + 1) % testimonials.length;
-  showSlide();
-}
-
-function prevSlide() {
-  index = (index - 1 + testimonials.length) % testimonials.length;
-  showSlide();
-}
-
-showSlide();
-
-/* ===================== */
-/* ACCORDION */
-/* ===================== */
-document.querySelectorAll(".accordion-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const content = btn.nextElementSibling;
-    content.style.display =
-      content.style.display === "block" ? "none" : "block";
+function renderCourses(list) {
+  container.innerHTML = "";
+  list.forEach(c => {
+    container.innerHTML += `
+      <div class="card">
+        <h3>${c.title}</h3>
+        <p>${c.level}</p>
+      </div>
+    `;
   });
+}
+
+renderCourses(courses);
+
+/* ===================== */
+/* FILTRO */
+/* ===================== */
+document.getElementById("filter").addEventListener("input", e => {
+  const value = e.target.value.toLowerCase();
+  const filtered = courses.filter(c =>
+    c.title.toLowerCase().includes(value)
+  );
+  renderCourses(filtered);
 });
 
 /* ===================== */
-/* ACESSIBILIDADE */
+/* MENU MOBILE */
 /* ===================== */
-let fontSize = 16;
+document.querySelector(".menu-toggle").onclick = () => {
+  document.querySelector(".menu").classList.toggle("active");
+};
 
-function changeFontSize(step) {
-  fontSize += step;
-  document.body.style.fontSize = fontSize + "px";
+/* ===================== */
+/* DARK MODE */
+/* ===================== */
+function toggleDarkMode() {
+  document.body.classList.toggle("dark");
 }
 
+/* ===================== */
+/* CONTRASTE */
+/* ===================== */
 function toggleContrast() {
   document.body.classList.toggle("high-contrast");
 }
 
 /* ===================== */
+/* FONTE */
+/* ===================== */
+let size = 16;
+function changeFontSize(step) {
+  size += step;
+  document.body.style.fontSize = size + "px";
+}
+
+/* ===================== */
+/* FORM VALIDAÇÃO */
+/* ===================== */
+document.getElementById("form").addEventListener("submit", e => {
+  e.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+
+  if (name.length < 3) {
+    showToast("Nome inválido");
+    return;
+  }
+
+  if (!email.includes("@")) {
+    showToast("Email inválido");
+    return;
+  }
+
+  showToast("Mensagem enviada!");
+});
+
+/* ===================== */
+/* TOAST */
+/* ===================== */
+function showToast(msg) {
+  const toast = document.getElementById("toast");
+  toast.innerText = msg;
+  toast.style.display = "block";
+
+  setTimeout(() => {
+    toast.style.display = "none";
+  }, 3000);
+}
+
+/* ===================== */
 /* SCROLL REVEAL */
 /* ===================== */
-const reveals = document.querySelectorAll(".reveal");
-
 window.addEventListener("scroll", () => {
-  reveals.forEach(el => {
-    const top = el.getBoundingClientRect().top;
-    if (top < window.innerHeight - 50) {
-      el.classList.add("active");
+  document.querySelectorAll("section").forEach(sec => {
+    if (sec.getBoundingClientRect().top < window.innerHeight - 50) {
+      sec.classList.add("active");
     }
   });
 });
