@@ -1,84 +1,50 @@
-/* ===================== */
-/* DARK/LIGHT MODE */
-/* ===================== */
-const toggle = document.getElementById("themeToggle");
+/* ================= */
+/* DADOS */
+/* ================= */
+const courses = ["HTML", "CSS", "JavaScript"];
+const testimonials = ["Muito bom!", "Gostei!", "Top!"];
 
-toggle.onclick = () => {
-  document.body.classList.toggle("light");
-  localStorage.setItem("theme", document.body.classList.contains("light"));
-};
-
-if (localStorage.getItem("theme") === "true") {
-  document.body.classList.add("light");
-}
-
-/* ===================== */
-/* DADOS DINÂMICOS */
-/* ===================== */
-const features = [
-  "Aulas práticas",
-  "Certificado",
-  "Acesso vitalício"
-];
-
-const courses = [
-  "HTML & CSS",
-  "JavaScript",
-  "React"
-];
-
-const testimonials = [
-  "Muito bom!",
-  "Aprendi rápido",
-  "Top demais"
-];
-
-/* ===================== */
+/* ================= */
 /* RENDER */
-/* ===================== */
-const featureDiv = document.getElementById("features");
-features.forEach(f => {
-  featureDiv.innerHTML += `<div class="card">${f}</div>`;
-});
+/* ================= */
+const list = document.getElementById("courseList");
 
-const courseList = document.getElementById("courseList");
 courses.forEach(c => {
-  courseList.innerHTML += `<div class="card">${c}</div>`;
+  list.innerHTML += `<div class="card">${c}</div>`;
 });
 
-/* ===================== */
+/* ================= */
 /* CARROSSEL */
-/* ===================== */
+/* ================= */
 let i = 0;
-const track = document.getElementById("carouselTrack");
 
-function renderSlide() {
-  track.innerHTML = `<div class="card">${testimonials[i]}</div>`;
+function show() {
+  document.getElementById("slide").innerText = testimonials[i];
 }
 
-document.getElementById("next").onclick = () => {
+function next() {
   i = (i + 1) % testimonials.length;
-  renderSlide();
-};
+  show();
+}
 
-document.getElementById("prev").onclick = () => {
+function prev() {
   i = (i - 1 + testimonials.length) % testimonials.length;
-  renderSlide();
-};
+  show();
+}
 
-renderSlide();
+show();
 
-/* ===================== */
+/* ================= */
 /* FORM */
-/* ===================== */
-document.getElementById("form").onsubmit = e => {
+/* ================= */
+form.onsubmit = e => {
   e.preventDefault();
-  showToast("Mensagem enviada!");
+  showToast("Enviado!");
 };
 
-/* ===================== */
+/* ================= */
 /* TOAST */
-/* ===================== */
+/* ================= */
 function showToast(msg) {
   const toast = document.getElementById("toast");
   toast.innerText = msg;
@@ -86,5 +52,5 @@ function showToast(msg) {
 
   setTimeout(() => {
     toast.style.display = "none";
-  }, 3000);
+  }, 2000);
 }
