@@ -1,57 +1,74 @@
-/* ===================== */
-/* DADOS MAIS COMPLETOS */
-/* ===================== */
+/* ================= */
+/* DADOS */
+/* ================= */
+let favorites = JSON.parse(localStorage.getItem("fav")) || [];
+
 const courses = [
-  { name: "HTML", level: "Iniciante", desc: "Aprenda estrutura web" },
-  { name: "CSS", level: "Intermediário", desc: "Estilização moderna" },
-  { name: "JavaScript", level: "Avançado", desc: "Lógica e interatividade" }
+  { name: "HTML", desc: "Base da web" },
+  { name: "CSS", desc: "Estilo moderno" },
+  { name: "JavaScript", desc: "Interatividade" }
 ];
 
-const testimonials = [
-  "Muito bom!",
-  "Aprendi rápido!",
-  "Top demais!"
-];
-
-/* ===================== */
-/* RENDER CURSOS */
-/* ===================== */
+/* ================= */
+/* RENDER */
+/* ================= */
 const list = document.getElementById("courseList");
 
-function renderCourses(data) {
+function render(data) {
   list.innerHTML = "";
 
   data.forEach(c => {
+    const fav = favorites.includes(c.name);
+
     list.innerHTML += `
       <div class="card">
         <h3>${c.name}</h3>
-        <p>${c.level}</p>
+        <p>${c.desc}</p>
+
         <button onclick="openModal('${c.name}','${c.desc}')">
-          Ver mais
+          Ver
+        </button>
+
+        <button onclick="toggleFav('${c.name}')">
+          ${fav ? "★" : "☆"}
         </button>
       </div>
     `;
   });
 }
 
-renderCourses(courses);
+render(courses);
 
-/* ===================== */
+/* ================= */
 /* BUSCA */
-/* ===================== */
-document.getElementById("search").addEventListener("input", e => {
-  const value = e.target.value.toLowerCase();
+/* ================= */
+search.oninput = e => {
+  const val = e.target.value.toLowerCase();
 
   const filtered = courses.filter(c =>
-    c.name.toLowerCase().includes(value)
+    c.name.toLowerCase().includes(val)
   );
 
-  renderCourses(filtered);
-});
+  render(filtered);
+};
 
-/* ===================== */
+/* ================= */
+/* FAVORITOS */
+/* ================= */
+function toggleFav(name) {
+  if (favorites.includes(name)) {
+    favorites = favorites.filter(f => f !== name);
+  } else {
+    favorites.push(name);
+  }
+
+  localStorage.setItem("fav", JSON.stringify(favorites));
+  render(courses);
+}
+
+/* ================= */
 /* MODAL */
-/* ===================== */
+/* ================= */
 function openModal(title, desc) {
   modal.style.display = "flex";
   modalTitle.innerText = title;
@@ -62,67 +79,75 @@ function closeModal() {
   modal.style.display = "none";
 }
 
-/* ===================== */
-/* CARROSSEL */
-/* ===================== */
+/* ================= */
+/* CARROSSEL AUTO */
+/* ================= */
+const depo = ["Muito bom!", "Gostei!", "Top!"];
 let i = 0;
 
 function show() {
-  slide.innerText = testimonials[i];
+  slide.innerText = depo[i];
 }
 
 function next() {
-  i = (i + 1) % testimonials.length;
+  i = (i + 1) % depo.length;
   show();
 }
 
 function prev() {
-  i = (i - 1 + testimonials.length) % testimonials.length;
+  i = (i - 1 + depo.length) % depo.length;
   show();
 }
 
+setInterval(next, 3000);
 show();
 
-/* ===================== */
-/* FORM MELHORADO */
-/* ===================== */
+/* ================= */
+/* SCROLL */
+/* ================= */
+function scrollToCourses() {
+  document.getElementById("courses").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+/* ================= */
+/* FORM */
+/* ================= */
 form.onsubmit = e => {
   e.preventDefault();
 
-  const inputs = form.querySelectorAll("input");
-
-  if (inputs[0].value.length < 3) {
-    showToast("Nome muito curto");
+  if (name.value.length < 3) {
+    showToast("Nome inválido");
     return;
   }
 
-  if (!inputs[1].value.includes("@")) {
+  if (!email.value.includes("@")) {
     showToast("Email inválido");
     return;
   }
 
-  showToast("Mensagem enviada com sucesso!");
+  showToast("Enviado!");
   form.reset();
 };
 
-/* ===================== */
+/* ================= */
 /* TOAST */
-/* ===================== */
+/* ================= */
 function showToast(msg) {
-  const toast = document.getElementById("toast");
   toast.innerText = msg;
   toast.style.display = "block";
 
   setTimeout(() => {
     toast.style.display = "none";
-  }, 2500);
+  }, 2000);
 }
 
-/* ===================== */
-/* SCROLL REVEAL */
-/* ===================== */
+/* ================= */
+/* ANIMAÇÃO */
+/* ================= */
 window.addEventListener("scroll", () => {
-  document.querySelectorAll("section").forEach(sec => {
+  document.querySelectorAll(".section").forEach(sec => {
     if (sec.getBoundingClientRect().top < window.innerHeight - 50) {
       sec.classList.add("active");
     }
