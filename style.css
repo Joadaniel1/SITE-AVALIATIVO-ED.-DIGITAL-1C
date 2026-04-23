@@ -3,14 +3,18 @@
 /* ===================== */
 :root {
   --primary: #4f46e5;
-  --secondary: #06b6d4;
-  --bg: #f9fafb;
+  --bg: #ffffff;
   --text: #111;
-  --radius: 12px;
-  --spacing: 16px;
+  --radius: 10px;
 }
 
-/* ALTO CONTRASTE */
+/* DARK MODE */
+body.dark {
+  --bg: #111;
+  --text: #fff;
+}
+
+/* HIGH CONTRAST */
 body.high-contrast {
   --bg: #000;
   --text: #fff;
@@ -19,81 +23,73 @@ body.high-contrast {
 
 /* RESET */
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
+  font-family: sans-serif;
   background: var(--bg);
   color: var(--text);
 }
 
-/* HEADER */
-header {
-  background: var(--primary);
-  color: white;
-  padding: var(--spacing);
-}
-
+/* NAV */
 nav {
   display: flex;
   justify-content: space-between;
+  padding: 10px;
 }
 
-/* HERO */
-.hero {
-  text-align: center;
-  padding: 60px 20px;
+.menu {
+  display: none;
 }
 
-/* GRID (EDITÁVEL AQUI) */
+.menu.active {
+  display: block;
+}
+
+/* GRID EDITÁVEL */
 .grid {
   display: grid;
-  gap: var(--spacing);
+  gap: 16px;
   grid-template-columns: 1fr;
 }
 
-/* RESPONSIVO */
 @media (min-width: 768px) {
   .grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* CARDS */
+/* CARD */
 .card {
-  background: white;
-  padding: var(--spacing);
+  padding: 15px;
   border-radius: var(--radius);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  background: #eee;
 }
 
-/* CARROSSEL */
-.carousel {
+/* FORM */
+form {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   gap: 10px;
 }
 
-/* ACCORDION */
-.accordion-content {
-  display: none;
-  padding: 10px;
-}
-
-/* REVEAL ANIMATION */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: 0.6s;
-}
-
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ACESSIBILIDADE */
-.accessibility-controls {
+/* TOAST */
+#toast {
   position: fixed;
-  top: 10px;
-  right: 10px;
+  bottom: 20px;
+  right: 20px;
+  background: var(--primary);
+  color: white;
+  padding: 10px;
+  display: none;
+}
+
+/* REVEAL */
+section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.5s;
+}
+
+section.active {
+  opacity: 1;
+  transform: none;
 }
