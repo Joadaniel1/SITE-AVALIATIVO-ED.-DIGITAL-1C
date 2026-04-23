@@ -9,68 +9,47 @@
 
 <body>
 
-<header class="header">
-  <div class="container nav">
-    <h1 class="logo">EduTech</h1>
-    <nav>
-      <a href="#features">Recursos</a>
-      <a href="#courses">Cursos</a>
-      <a href="#contact">Contato</a>
-    </nav>
-    <button id="themeToggle">🌙</button>
-  </div>
+<header>
+  <h1>EduTech</h1>
+  <nav>
+    <a href="#hero">Início</a>
+    <a href="#courses">Cursos</a>
+    <a href="#contact">Contato</a>
+  </nav>
 </header>
 
-<main>
-
-<!-- HERO REALMENTE MODERNO -->
-<section class="hero container">
-  <div class="hero-text">
-    <h2>Aprenda como um profissional</h2>
-    <p>Uma plataforma moderna com experiência premium e acessível</p>
-    <button class="btn">Começar agora</button>
-  </div>
-  <div class="hero-card">
-    <h3>+10.000 alunos</h3>
-    <p>Aprendendo todos os dias</p>
-  </div>
+<!-- HERO -->
+<section id="hero">
+  <h2>Aprenda com estilo 🚀</h2>
+  <p>Plataforma moderna e colorida</p>
+  <button onclick="showToast('Bem-vindo!')">Começar</button>
 </section>
 
-<!-- FEATURES -->
-<section id="features" class="container grid-3"></section>
-
-<!-- COURSES -->
-<section id="courses" class="container">
-  <h2>Cursos populares</h2>
-  <div id="courseList" class="grid-3"></div>
+<!-- CURSOS -->
+<section id="courses">
+  <h2>Cursos</h2>
+  <div id="courseList"></div>
 </section>
 
 <!-- CARROSSEL -->
-<section class="container">
+<section id="testimonials">
   <h2>Depoimentos</h2>
   <div class="carousel">
-    <button id="prev">◀</button>
-    <div id="carouselTrack"></div>
-    <button id="next">▶</button>
+    <button onclick="prev()">◀</button>
+    <div id="slide"></div>
+    <button onclick="next()">▶</button>
   </div>
 </section>
 
 <!-- FORM -->
-<section id="contact" class="container">
-  <h2>Fale com a gente</h2>
+<section id="contact">
+  <h2>Contato</h2>
   <form id="form">
-    <input type="text" placeholder="Nome" required>
-    <input type="email" placeholder="Email" required>
-    <textarea placeholder="Mensagem"></textarea>
-    <button class="btn">Enviar</button>
+    <input placeholder="Nome" required>
+    <input placeholder="Email" required>
+    <button>Enviar</button>
   </form>
 </section>
-
-</main>
-
-<footer>
-  <p>© 2026 EduTech</p>
-</footer>
 
 <div id="toast"></div>
 
