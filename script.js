@@ -1,47 +1,95 @@
 /* ================= */
-/* LOGIN */
+/* ESTADO GLOBAL */
 /* ================= */
-function openLogin() {
-  login.style.display = "flex";
-}
-
-function login() {
-  const u = user.value;
-  if (u.length < 3) {
-    showToast("Usuário inválido");
-    return;
-  }
-
-  localStorage.setItem("user", u);
-  login.style.display = "none";
-  showToast("Bem-vindo " + u);
-}
-
-/* ================= */
-/* DADOS */
-/* ================= */
+let user = localStorage.getItem("user");
 let fav = JSON.parse(localStorage.getItem("fav")) || [];
 
 const courses = [
   { name: "HTML", level: "Iniciante" },
   { name: "CSS", level: "Iniciante" },
-  { name: "JavaScript", level: "Avançado" }
+  { name: "JavaScript", level: "Avançado" },
+  { name: "React", level: "Avançado" }
 ];
 
 /* ================= */
-/* RENDER */
+/* INIT */
 /* ================= */
-function render(listData) {
+window.onload = () => {
+  updateUserUI();
+  loadData();
+};
+
+/* ================= */
+/* LOADING */
+/* ================= */
+function loadData() {
+  loading.style.display = "block";
+
+  setTimeout(() => {
+    loading.style.display = "none";
+    renderCourses(courses);
+    renderFav();
+  }, 800);
+}
+
+/* ================= */
+/* LOGIN */
+/* ================= */
+loginBtn.onclick = () => {
+  loginModal.style.display = "flex";
+};
+
+function handleLogin() {
+  const name = userInput.value;
+
+  if (name.length < 3) {
+    showToast("Nome inválido");
+    return;
+  }
+
+  localStorage.setItem("user", name);
+  user = name;
+
+  loginModal.style.display = "none";
+  updateUserUI();
+  showToast("Logado com sucesso");
+}
+
+function logout() {
+  localStorage.removeItem("user");
+  user = null;
+  updateUserUI();
+  showToast("Saiu da conta");
+}
+
+/* ================= */
+/* UI USER */
+/* ================= */
+function updateUserUI() {
+  if (user) {
+    userArea.innerHTML = `<span>Olá, ${user}</span>`;
+    welcome.innerText = "Bem-vindo " + user;
+  } else {
+    userArea.innerHTML = `<button id="loginBtn">Entrar</button>`;
+    document.getElementById("loginBtn").onclick = () => {
+      loginModal.style.display = "flex";
+    };
+  }
+}
+
+/* ================= */
+/* CURSOS */
+/* ================= */
+function renderCourses(data) {
   courseList.innerHTML = "";
 
-  listData.forEach(c => {
+  data.forEach(c => {
     const isFav = fav.includes(c.name);
 
     courseList.innerHTML += `
       <div class="card">
         <h3>${c.name}</h3>
         <p>${c.level}</p>
-
         <button onclick="toggleFav('${c.name}')">
           ${isFav ? "★" : "☆"}
         </button>
@@ -61,12 +109,14 @@ function toggleFav(name) {
   }
 
   localStorage.setItem("fav", JSON.stringify(fav));
-  render(courses);
+
+  renderCourses(courses);
   renderFav();
 }
 
 function renderFav() {
   favList.innerHTML = "";
+  count.innerText = fav.length;
 
   fav.forEach(f => {
     favList.innerHTML += `<div class="card">${f}</div>`;
@@ -74,12 +124,12 @@ function renderFav() {
 }
 
 /* ================= */
-/* FILTRO */
+/* FILTRO + BUSCA */
 /* ================= */
-search.oninput = applyFilter;
-filter.onchange = applyFilter;
+search.oninput = apply;
+filter.onchange = apply;
 
-function applyFilter() {
+function apply() {
   let data = courses;
 
   if (search.value) {
@@ -92,7 +142,7 @@ function applyFilter() {
     data = data.filter(c => c.level === filter.value);
   }
 
-  render(data);
+  renderCourses(data);
 }
 
 /* ================= */
@@ -101,9 +151,8 @@ function applyFilter() {
 function showToast(msg) {
   toast.innerText = msg;
   toast.style.display = "block";
-  setTimeout(() => toast.style.display = "none", 2000);
-}
 
-/* INIT */
-render(courses);
-renderFav();
+  setTimeout(() => {
+    toast.style.display = "none";
+  }, 2000);
+}
