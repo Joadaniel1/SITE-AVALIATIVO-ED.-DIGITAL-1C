@@ -1,183 +1,84 @@
-/* ===================== */
-/* DESIGN SYSTEM (CORES FORTES) */
-/* ===================== */
-:root {
-  --primary: #6366f1;
-  --secondary: #06b6d4;
-  --accent: #22c55e;
-  --bg: #0f172a;
-  --bg-light: #f8fafc;
-  --text: #ffffff;
-  --text-dark: #111;
-  --card: rgba(255, 255, 255, 0.08);
-  --radius: 16px;
-}
-
-/* LIGHT MODE */
-body.light {
-  --bg: var(--bg-light);
-  --text: var(--text-dark);
-  --card: #ffffff;
-}
-
 /* RESET */
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #0f172a, #1e293b);
-  color: var(--text);
-  transition: 0.4s;
+  font-family: Arial, sans-serif;
+  color: white;
 }
 
-/* ===================== */
 /* HEADER */
-/* ===================== */
 header {
-  background: rgba(0,0,0,0.3);
-  backdrop-filter: blur(10px);
+  background: #1e293b;
   padding: 15px;
-}
-
-nav {
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
 nav a {
-  color: var(--text);
+  color: white;
   margin-left: 15px;
   text-decoration: none;
-  transition: 0.3s;
 }
 
-nav a:hover {
-  color: var(--secondary);
-}
-
-/* ===================== */
-/* HERO */
-/* ===================== */
-.hero {
-  text-align: center;
-  padding: 100px 20px;
+/* HERO (SUPER COLORIDO) */
+#hero {
   background: linear-gradient(135deg, #6366f1, #06b6d4);
-  color: white;
+  padding: 100px 20px;
+  text-align: center;
 }
 
-.hero h2 {
-  font-size: 2.5rem;
-}
-
-.hero p {
-  opacity: 0.9;
-}
-
-/* ===================== */
 /* BOTÃO */
-/* ===================== */
-.btn {
-  margin-top: 20px;
-  background: var(--accent);
+button {
+  background: #22c55e;
   border: none;
-  padding: 14px 24px;
+  padding: 12px 20px;
   color: white;
-  border-radius: var(--radius);
+  border-radius: 8px;
   cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
 }
 
-.btn:hover {
-  transform: scale(1.1);
-  background: #16a34a;
+/* SECTIONS */
+#courses {
+  background: #0f172a;
+  padding: 50px;
 }
 
-/* ===================== */
-/* GRID (EDITÁVEL) */
-/* ===================== */
-.grid-3 {
-  display: grid;
-  gap: 25px;
-  padding: 40px 0;
+#testimonials {
+  background: #1e293b;
+  padding: 50px;
 }
 
-@media (min-width: 768px) {
-  .grid-3 {
-    grid-template-columns: repeat(3, 1fr);
-  }
+#contact {
+  background: #334155;
+  padding: 50px;
 }
 
-/* ===================== */
 /* CARDS */
-/* ===================== */
 .card {
-  background: var(--card);
-  padding: 25px;
-  border-radius: var(--radius);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.1);
-  transition: 0.4s;
+  background: #475569;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
 }
 
-.card:hover {
-  transform: translateY(-12px) scale(1.03);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+/* GRID */
+#courseList {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-/* ===================== */
 /* CARROSSEL */
-/* ===================== */
 .carousel {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 15px;
 }
 
-.carousel button {
-  background: var(--primary);
-  border: none;
-  color: white;
-  padding: 10px;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-/* ===================== */
-/* FORM */
-/* ===================== */
-form input, form textarea {
-  padding: 12px;
-  border-radius: var(--radius);
-  border: none;
-  outline: none;
-}
-
-form input:focus, textarea:focus {
-  box-shadow: 0 0 0 2px var(--secondary);
-}
-
-/* ===================== */
 /* TOAST */
-/* ===================== */
 #toast {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: var(--accent);
-  padding: 12px 20px;
-  color: white;
-  border-radius: var(--radius);
+  background: #22c55e;
+  padding: 10px;
   display: none;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-}
-
-/* ===================== */
-/* FOOTER */
-/* ===================== */
-footer {
-  text-align: center;
-  padding: 20px;
-  opacity: 0.7;
 }
