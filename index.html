@@ -6,6 +6,13 @@
   <title>EduTech Pro</title>
   <link rel="stylesheet" href="style.css">
 </head>
+  <div id="modal">
+  <div class="modal-box">
+    <h3 id="modalTitle"></h3>
+    <p id="modalDesc"></p>
+    <button onclick="closeModal()">Fechar</button>
+  </div>
+</div>
 
 <body>
 
@@ -24,7 +31,9 @@
   <p>Plataforma moderna e colorida</p>
   <button onclick="showToast('Bem-vindo!')">Começar</button>
 </section>
-
+  
+<input id="search" placeholder="Buscar curso..." />
+  
 <!-- CURSOS -->
 <section id="courses">
   <h2>Cursos</h2>
