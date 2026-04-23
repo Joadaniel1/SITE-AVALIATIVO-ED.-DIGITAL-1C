@@ -3,101 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EduTech Pro Max</title>
+  <title>EduTech Pro</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- ACESSIBILIDADE -->
-<div class="a11y">
-  <button onclick="fontSize(1)">A+</button>
-  <button onclick="fontSize(-1)">A-</button>
-  <button onclick="toggleContrast()">Contraste</button>
-  <button onclick="toggleDark()">🌙</button>
-</div>
-
-<header id="header">
-  <nav>
-    <h1>EduTech</h1>
-    <button id="menuBtn">☰</button>
-    <ul id="menu">
-      <li><a href="#cursos">Cursos</a></li>
-      <li><a href="#features">Recursos</a></li>
-      <li><a href="#contato">Contato</a></li>
-    </ul>
-  </nav>
+<header class="header">
+  <div class="container nav">
+    <h1 class="logo">EduTech</h1>
+    <nav>
+      <a href="#features">Recursos</a>
+      <a href="#courses">Cursos</a>
+      <a href="#contact">Contato</a>
+    </nav>
+    <button id="themeToggle">🌙</button>
+  </div>
 </header>
 
 <main>
 
-<!-- HERO -->
-<section class="hero">
-  <h2>Aprenda no nível profissional</h2>
-  <p>Interface moderna + experiência premium</p>
-  <button onclick="openModal()">Começar</button>
-</section>
-
-<!-- TABS -->
-<section>
-  <div class="tabs">
-    <button class="tab active" data-tab="1">Front-end</button>
-    <button class="tab" data-tab="2">Back-end</button>
+<!-- HERO REALMENTE MODERNO -->
+<section class="hero container">
+  <div class="hero-text">
+    <h2>Aprenda como um profissional</h2>
+    <p>Uma plataforma moderna com experiência premium e acessível</p>
+    <button class="btn">Começar agora</button>
   </div>
-
-  <div class="tab-content active" id="tab-1">HTML, CSS, JS</div>
-  <div class="tab-content" id="tab-2">Node, APIs</div>
+  <div class="hero-card">
+    <h3>+10.000 alunos</h3>
+    <p>Aprendendo todos os dias</p>
+  </div>
 </section>
 
-<!-- CURSOS -->
-<section id="cursos">
-  <h2>Cursos</h2>
-  <div id="courses" class="grid"></div>
+<!-- FEATURES -->
+<section id="features" class="container grid-3"></section>
+
+<!-- COURSES -->
+<section id="courses" class="container">
+  <h2>Cursos populares</h2>
+  <div id="courseList" class="grid-3"></div>
 </section>
 
 <!-- CARROSSEL -->
-<section>
+<section class="container">
+  <h2>Depoimentos</h2>
   <div class="carousel">
-    <button onclick="prev()">◀</button>
-    <div id="slide"></div>
-    <button onclick="next()">▶</button>
+    <button id="prev">◀</button>
+    <div id="carouselTrack"></div>
+    <button id="next">▶</button>
   </div>
 </section>
 
-<!-- ACCORDION -->
-<section>
-  <button class="acc">O site é gratuito?</button>
-  <div class="acc-content">Sim</div>
-
-  <button class="acc">Tem certificado?</button>
-  <div class="acc-content">Sim</div>
-</section>
-
-<!-- CONTATO -->
-<section id="contato">
+<!-- FORM -->
+<section id="contact" class="container">
+  <h2>Fale com a gente</h2>
   <form id="form">
-    <input id="name" placeholder="Nome" required>
-    <input id="email" placeholder="Email" required>
-    <button>Enviar</button>
+    <input type="text" placeholder="Nome" required>
+    <input type="email" placeholder="Email" required>
+    <textarea placeholder="Mensagem"></textarea>
+    <button class="btn">Enviar</button>
   </form>
 </section>
 
 </main>
 
-<!-- MODAL -->
-<div id="modal">
-  <div class="modal-content">
-    <p>Bem-vindo 👋</p>
-    <button onclick="closeModal()">Fechar</button>
-  </div>
-</div>
-
-<!-- TOAST -->
-<div id="toast"></div>
-
 <footer>
   <p>© 2026 EduTech</p>
 </footer>
+
+<div id="toast"></div>
 
 <script src="script.js"></script>
 </body>
