@@ -1,16 +1,19 @@
 /* RESET */
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: Arial;
   color: white;
 }
 
-/* HEADER */
-header {
-  background: #1e293b;
-  padding: 15px;
+/* HEADER FIXO */
+.header {
+  position: sticky;
+  top: 0;
+  background: #020617;
   display: flex;
   justify-content: space-between;
+  padding: 15px;
+  z-index: 1000;
 }
 
 nav a {
@@ -19,24 +22,13 @@ nav a {
   text-decoration: none;
 }
 
-/* HERO (SUPER COLORIDO) */
+/* SECTIONS COLORIDAS */
 #hero {
   background: linear-gradient(135deg, #6366f1, #06b6d4);
-  padding: 100px 20px;
   text-align: center;
+  padding: 100px 20px;
 }
 
-/* BOTÃO */
-button {
-  background: #22c55e;
-  border: none;
-  padding: 12px 20px;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-/* SECTIONS */
 #courses {
   background: #0f172a;
   padding: 50px;
@@ -52,18 +44,41 @@ button {
   padding: 50px;
 }
 
-/* CARDS */
+/* GRID */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+/* CARD */
 .card {
   background: #475569;
   padding: 20px;
-  margin: 10px;
   border-radius: 10px;
+  width: 200px;
+  transition: 0.3s;
 }
 
-/* GRID */
-#courseList {
-  display: flex;
-  flex-wrap: wrap;
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* BOTÃO */
+button {
+  background: #22c55e;
+  border: none;
+  padding: 10px;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+/* SEARCH */
+#search {
+  padding: 10px;
+  margin-bottom: 20px;
+  width: 100%;
 }
 
 /* CARROSSEL */
@@ -71,22 +86,6 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-/* TOAST */
-#toast {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #22c55e;
-  padding: 10px;
-  display: none;
-}
-/* INPUT */
-#search {
-  padding: 10px;
-  margin-bottom: 20px;
-  width: 100%;
 }
 
 /* MODAL */
@@ -105,14 +104,24 @@ button {
   border-radius: 10px;
 }
 
+/* TOAST */
+#toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #22c55e;
+  padding: 10px;
+  display: none;
+}
+
 /* ANIMAÇÃO */
-section {
+.section {
   opacity: 0;
   transform: translateY(20px);
   transition: 0.5s;
 }
 
-section.active {
+.section.active {
   opacity: 1;
   transform: none;
 }
