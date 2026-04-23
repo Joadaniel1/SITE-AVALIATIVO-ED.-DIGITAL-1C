@@ -3,28 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EduTech Pro</title>
+  <title>EduTech Pro Max</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <!-- ACESSIBILIDADE -->
-<div class="accessibility-controls">
-  <button onclick="changeFontSize(1)">A+</button>
-  <button onclick="changeFontSize(-1)">A-</button>
+<div class="a11y">
+  <button onclick="fontSize(1)">A+</button>
+  <button onclick="fontSize(-1)">A-</button>
   <button onclick="toggleContrast()">Contraste</button>
-  <button onclick="toggleDarkMode()">🌙</button>
+  <button onclick="toggleDark()">🌙</button>
 </div>
 
-<!-- HEADER -->
-<header>
+<header id="header">
   <nav>
     <h1>EduTech</h1>
-    <button class="menu-toggle" aria-label="Abrir menu">☰</button>
-    <ul class="menu">
-      <li><a href="#sobre">Sobre</a></li>
+    <button id="menuBtn">☰</button>
+    <ul id="menu">
       <li><a href="#cursos">Cursos</a></li>
+      <li><a href="#features">Recursos</a></li>
       <li><a href="#contato">Contato</a></li>
     </ul>
   </nav>
@@ -34,33 +33,64 @@
 
 <!-- HERO -->
 <section class="hero">
-  <h2>Aprenda habilidades do futuro</h2>
-  <p>Plataforma moderna com cursos acessíveis</p>
+  <h2>Aprenda no nível profissional</h2>
+  <p>Interface moderna + experiência premium</p>
+  <button onclick="openModal()">Começar</button>
 </section>
 
-<!-- FILTRO -->
+<!-- TABS -->
 <section>
-  <input type="text" id="filter" placeholder="Buscar curso...">
+  <div class="tabs">
+    <button class="tab active" data-tab="1">Front-end</button>
+    <button class="tab" data-tab="2">Back-end</button>
+  </div>
+
+  <div class="tab-content active" id="tab-1">HTML, CSS, JS</div>
+  <div class="tab-content" id="tab-2">Node, APIs</div>
 </section>
 
 <!-- CURSOS -->
 <section id="cursos">
   <h2>Cursos</h2>
-  <div id="courses-container" class="grid"></div>
+  <div id="courses" class="grid"></div>
 </section>
 
-<!-- FORM -->
+<!-- CARROSSEL -->
+<section>
+  <div class="carousel">
+    <button onclick="prev()">◀</button>
+    <div id="slide"></div>
+    <button onclick="next()">▶</button>
+  </div>
+</section>
+
+<!-- ACCORDION -->
+<section>
+  <button class="acc">O site é gratuito?</button>
+  <div class="acc-content">Sim</div>
+
+  <button class="acc">Tem certificado?</button>
+  <div class="acc-content">Sim</div>
+</section>
+
+<!-- CONTATO -->
 <section id="contato">
-  <h2>Contato</h2>
   <form id="form">
-    <input type="text" id="name" placeholder="Nome" required>
-    <input type="email" id="email" placeholder="Email" required>
-    <textarea id="msg" placeholder="Mensagem"></textarea>
-    <button type="submit">Enviar</button>
+    <input id="name" placeholder="Nome" required>
+    <input id="email" placeholder="Email" required>
+    <button>Enviar</button>
   </form>
 </section>
 
 </main>
+
+<!-- MODAL -->
+<div id="modal">
+  <div class="modal-content">
+    <p>Bem-vindo 👋</p>
+    <button onclick="closeModal()">Fechar</button>
+  </div>
+</div>
 
 <!-- TOAST -->
 <div id="toast"></div>
