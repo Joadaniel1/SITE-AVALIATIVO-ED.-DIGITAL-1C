@@ -1,0 +1,99 @@
+/* ===================== */
+/* DESIGN SYSTEM */
+/* ===================== */
+:root {
+  --primary: #4f46e5;
+  --secondary: #06b6d4;
+  --bg: #f9fafb;
+  --text: #111;
+  --radius: 12px;
+  --spacing: 16px;
+}
+
+/* ALTO CONTRASTE */
+body.high-contrast {
+  --bg: #000;
+  --text: #fff;
+  --primary: #ff0;
+}
+
+/* RESET */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* HEADER */
+header {
+  background: var(--primary);
+  color: white;
+  padding: var(--spacing);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+/* GRID (EDITÁVEL AQUI) */
+.grid {
+  display: grid;
+  gap: var(--spacing);
+  grid-template-columns: 1fr;
+}
+
+/* RESPONSIVO */
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* CARDS */
+.card {
+  background: white;
+  padding: var(--spacing);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* CARROSSEL */
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* ACCORDION */
+.accordion-content {
+  display: none;
+  padding: 10px;
+}
+
+/* REVEAL ANIMATION */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 0.6s;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ACESSIBILIDADE */
+.accessibility-controls {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+}
