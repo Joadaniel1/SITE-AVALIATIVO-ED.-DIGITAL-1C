@@ -1,32 +1,27 @@
-/* ===================== */
-/* DESIGN SYSTEM */
-/* ===================== */
 :root {
-  --primary: #4f46e5;
-  --bg: #ffffff;
+  --primary: #6366f1;
+  --bg: #fff;
   --text: #111;
-  --radius: 10px;
+  --radius: 12px;
 }
 
-/* DARK MODE */
 body.dark {
-  --bg: #111;
+  --bg: #0f172a;
   --text: #fff;
 }
 
-/* HIGH CONTRAST */
 body.high-contrast {
   --bg: #000;
   --text: #fff;
-  --primary: #ff0;
+  --primary: yellow;
 }
 
-/* RESET */
 body {
   margin: 0;
   font-family: sans-serif;
   background: var(--bg);
   color: var(--text);
+  transition: 0.3s;
 }
 
 /* NAV */
@@ -36,18 +31,24 @@ nav {
   padding: 10px;
 }
 
-.menu {
+#menu {
   display: none;
 }
 
-.menu.active {
+#menu.active {
   display: block;
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
 }
 
 /* GRID EDITÁVEL */
 .grid {
   display: grid;
-  gap: 16px;
+  gap: 20px;
   grid-template-columns: 1fr;
 }
 
@@ -59,16 +60,54 @@ nav {
 
 /* CARD */
 .card {
-  padding: 15px;
+  padding: 20px;
   border-radius: var(--radius);
   background: #eee;
+  transition: 0.3s;
 }
 
-/* FORM */
-form {
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* TABS */
+.tabs button.active {
+  background: var(--primary);
+  color: white;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* ACCORDION */
+.acc-content {
+  display: none;
+}
+
+/* CARROSSEL */
+.carousel {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   gap: 10px;
+}
+
+/* MODAL */
+#modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+}
+
+#modal.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* TOAST */
@@ -80,16 +119,4 @@ form {
   color: white;
   padding: 10px;
   display: none;
-}
-
-/* REVEAL */
-section {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: 0.5s;
-}
-
-section.active {
-  opacity: 1;
-  transform: none;
 }
