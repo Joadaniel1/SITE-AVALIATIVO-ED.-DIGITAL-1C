@@ -1,50 +1,52 @@
-/* RESET */
 body {
   margin: 0;
-  font-family: Arial;
+  font-family: sans-serif;
+  background: linear-gradient(135deg, #020617, #0f172a);
   color: white;
 }
 
-/* HEADER FIXO */
+/* HEADER */
 .header {
   position: sticky;
   top: 0;
-  background: #020617;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(10px);
+  padding: 15px;
   display: flex;
   justify-content: space-between;
-  padding: 15px;
-  z-index: 1000;
 }
 
 nav a {
   color: white;
   margin-left: 15px;
-  text-decoration: none;
 }
 
-/* SECTIONS COLORIDAS */
-#hero {
-  background: linear-gradient(135deg, #6366f1, #06b6d4);
+/* HERO */
+.hero {
   text-align: center;
-  padding: 100px 20px;
+  padding: 100px;
+  background: linear-gradient(135deg, #6366f1, #06b6d4);
 }
 
-#courses {
-  background: #0f172a;
-  padding: 50px;
+/* STATS */
+.stats {
+  display: flex;
+  justify-content: space-around;
+  background: #020617;
+  padding: 30px;
 }
 
-#testimonials {
+.stat {
   background: #1e293b;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* CURSOS */
+.section {
   padding: 50px;
 }
 
-#contact {
-  background: #334155;
-  padding: 50px;
-}
-
-/* GRID */
 .grid {
   display: flex;
   flex-wrap: wrap;
@@ -53,7 +55,8 @@ nav a {
 
 /* CARD */
 .card {
-  background: #475569;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
   padding: 20px;
   border-radius: 10px;
   width: 200px;
@@ -61,7 +64,7 @@ nav a {
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: translateY(-10px);
 }
 
 /* BOTÃO */
@@ -70,26 +73,11 @@ button {
   border: none;
   padding: 10px;
   color: white;
-  cursor: pointer;
   border-radius: 6px;
 }
 
-/* SEARCH */
-#search {
-  padding: 10px;
-  margin-bottom: 20px;
-  width: 100%;
-}
-
-/* CARROSSEL */
-.carousel {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* MODAL */
-#modal {
+/* LOGIN */
+#login {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.7);
@@ -98,10 +86,9 @@ button {
   align-items: center;
 }
 
-.modal-box {
+.box {
   background: #1e293b;
   padding: 20px;
-  border-radius: 10px;
 }
 
 /* TOAST */
@@ -112,16 +99,4 @@ button {
   background: #22c55e;
   padding: 10px;
   display: none;
-}
-
-/* ANIMAÇÃO */
-.section {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: 0.5s;
-}
-
-.section.active {
-  opacity: 1;
-  transform: none;
 }
