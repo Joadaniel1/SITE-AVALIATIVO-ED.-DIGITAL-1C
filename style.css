@@ -82,3 +82,37 @@ button {
   padding: 10px;
   display: none;
 }
+/* INPUT */
+#search {
+  padding: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+/* MODAL */
+#modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-box {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* ANIMAÇÃO */
+section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.5s;
+}
+
+section.active {
+  opacity: 1;
+  transform: none;
+}
