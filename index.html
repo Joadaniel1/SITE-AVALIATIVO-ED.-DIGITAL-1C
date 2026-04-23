@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduTech - Aprenda no seu ritmo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- ACESSIBILIDADE -->
+  <div class="accessibility-controls" aria-label="Controles de acessibilidade">
+    <button onclick="changeFontSize(1)">A+</button>
+    <button onclick="changeFontSize(-1)">A-</button>
+    <button onclick="toggleContrast()">Alto Contraste</button>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <nav aria-label="Menu principal">
+      <h1>EduTech</h1>
+      <ul>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#cursos">Cursos</a></li>
+        <li><a href="#depoimentos">Depoimentos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <h2 id="hero-title">Aprenda novas habilidades online</h2>
+      <p>Estude no seu ritmo com cursos acessíveis e modernos</p>
+      <button>Começar Agora</button>
+    </section>
+
+    <!-- SOBRE -->
+    <section id="sobre" class="reveal">
+      <h2>Sobre a Plataforma</h2>
+      <article>
+        <p>
+          Nossa plataforma oferece cursos interativos com foco em tecnologia,
+          design e mercado digital.
+        </p>
+      </article>
+    </section>
+
+    <!-- CURSOS (DINÂMICO) -->
+    <section id="cursos" class="reveal">
+      <h2>Nossos Cursos</h2>
+      <div id="courses-container" class="grid"></div>
+    </section>
+
+    <!-- CARROSSEL -->
+    <section id="depoimentos" class="reveal">
+      <h2>Depoimentos</h2>
+      <div class="carousel" aria-live="polite">
+        <button onclick="prevSlide()">◀</button>
+        <div id="carousel-content"></div>
+        <button onclick="nextSlide()">▶</button>
+      </div>
+    </section>
+
+    <!-- ACCORDION -->
+    <section class="reveal">
+      <h2>Perguntas Frequentes</h2>
+      <div class="accordion">
+        <button class="accordion-btn">Como funciona?</button>
+        <div class="accordion-content">Você acessa online a qualquer momento.</div>
+
+        <button class="accordion-btn">Tem certificado?</button>
+        <div class="accordion-content">Sim, todos os cursos possuem certificado.</div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 EduTech</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
