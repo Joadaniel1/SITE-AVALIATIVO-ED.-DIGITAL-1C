@@ -3,86 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EduTech - Aprenda no seu ritmo</title>
+  <title>EduTech Pro</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <!-- ACESSIBILIDADE -->
-  <div class="accessibility-controls" aria-label="Controles de acessibilidade">
-    <button onclick="changeFontSize(1)">A+</button>
-    <button onclick="changeFontSize(-1)">A-</button>
-    <button onclick="toggleContrast()">Alto Contraste</button>
-  </div>
 
-  <!-- HEADER -->
-  <header>
-    <nav aria-label="Menu principal">
-      <h1>EduTech</h1>
-      <ul>
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#cursos">Cursos</a></li>
-        <li><a href="#depoimentos">Depoimentos</a></li>
-      </ul>
-    </nav>
-  </header>
+<!-- ACESSIBILIDADE -->
+<div class="accessibility-controls">
+  <button onclick="changeFontSize(1)">A+</button>
+  <button onclick="changeFontSize(-1)">A-</button>
+  <button onclick="toggleContrast()">Contraste</button>
+  <button onclick="toggleDarkMode()">🌙</button>
+</div>
 
-  <!-- MAIN -->
-  <main>
+<!-- HEADER -->
+<header>
+  <nav>
+    <h1>EduTech</h1>
+    <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+    <ul class="menu">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#cursos">Cursos</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </nav>
+</header>
 
-    <!-- HERO -->
-    <section class="hero" aria-labelledby="hero-title">
-      <h2 id="hero-title">Aprenda novas habilidades online</h2>
-      <p>Estude no seu ritmo com cursos acessíveis e modernos</p>
-      <button>Começar Agora</button>
-    </section>
+<main>
 
-    <!-- SOBRE -->
-    <section id="sobre" class="reveal">
-      <h2>Sobre a Plataforma</h2>
-      <article>
-        <p>
-          Nossa plataforma oferece cursos interativos com foco em tecnologia,
-          design e mercado digital.
-        </p>
-      </article>
-    </section>
+<!-- HERO -->
+<section class="hero">
+  <h2>Aprenda habilidades do futuro</h2>
+  <p>Plataforma moderna com cursos acessíveis</p>
+</section>
 
-    <!-- CURSOS (DINÂMICO) -->
-    <section id="cursos" class="reveal">
-      <h2>Nossos Cursos</h2>
-      <div id="courses-container" class="grid"></div>
-    </section>
+<!-- FILTRO -->
+<section>
+  <input type="text" id="filter" placeholder="Buscar curso...">
+</section>
 
-    <!-- CARROSSEL -->
-    <section id="depoimentos" class="reveal">
-      <h2>Depoimentos</h2>
-      <div class="carousel" aria-live="polite">
-        <button onclick="prevSlide()">◀</button>
-        <div id="carousel-content"></div>
-        <button onclick="nextSlide()">▶</button>
-      </div>
-    </section>
+<!-- CURSOS -->
+<section id="cursos">
+  <h2>Cursos</h2>
+  <div id="courses-container" class="grid"></div>
+</section>
 
-    <!-- ACCORDION -->
-    <section class="reveal">
-      <h2>Perguntas Frequentes</h2>
-      <div class="accordion">
-        <button class="accordion-btn">Como funciona?</button>
-        <div class="accordion-content">Você acessa online a qualquer momento.</div>
+<!-- FORM -->
+<section id="contato">
+  <h2>Contato</h2>
+  <form id="form">
+    <input type="text" id="name" placeholder="Nome" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <textarea id="msg" placeholder="Mensagem"></textarea>
+    <button type="submit">Enviar</button>
+  </form>
+</section>
 
-        <button class="accordion-btn">Tem certificado?</button>
-        <div class="accordion-content">Sim, todos os cursos possuem certificado.</div>
-      </div>
-    </section>
+</main>
 
-  </main>
+<!-- TOAST -->
+<div id="toast"></div>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>&copy; 2026 EduTech</p>
-  </footer>
+<footer>
+  <p>© 2026 EduTech</p>
+</footer>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
