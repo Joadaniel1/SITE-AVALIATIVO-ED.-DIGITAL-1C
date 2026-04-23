@@ -2,21 +2,14 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EduTech Pro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
-  <div id="modal">
-  <div class="modal-box">
-    <h3 id="modalTitle"></h3>
-    <p id="modalDesc"></p>
-    <button onclick="closeModal()">Fechar</button>
-  </div>
-</div>
 
 <body>
 
-<header>
+<header class="header">
   <h1>EduTech</h1>
   <nav>
     <a href="#hero">Início</a>
@@ -26,22 +19,23 @@
 </header>
 
 <!-- HERO -->
-<section id="hero">
+<section id="hero" class="section">
   <h2>Aprenda com estilo 🚀</h2>
-  <p>Plataforma moderna e colorida</p>
-  <button onclick="showToast('Bem-vindo!')">Começar</button>
+  <p>Plataforma moderna e funcional</p>
+  <button onclick="scrollToCourses()">Explorar Cursos</button>
 </section>
-  
-<input id="search" placeholder="Buscar curso..." />
-  
+
 <!-- CURSOS -->
-<section id="courses">
+<section id="courses" class="section">
   <h2>Cursos</h2>
-  <div id="courseList"></div>
+
+  <input id="search" placeholder="Buscar curso..." />
+
+  <div id="courseList" class="grid"></div>
 </section>
 
 <!-- CARROSSEL -->
-<section id="testimonials">
+<section id="testimonials" class="section">
   <h2>Depoimentos</h2>
   <div class="carousel">
     <button onclick="prev()">◀</button>
@@ -50,16 +44,26 @@
   </div>
 </section>
 
-<!-- FORM -->
-<section id="contact">
+<!-- CONTATO -->
+<section id="contact" class="section">
   <h2>Contato</h2>
   <form id="form">
-    <input placeholder="Nome" required>
-    <input placeholder="Email" required>
+    <input id="name" placeholder="Nome" required>
+    <input id="email" placeholder="Email" required>
     <button>Enviar</button>
   </form>
 </section>
 
+<!-- MODAL -->
+<div id="modal">
+  <div class="modal-box">
+    <h3 id="modalTitle"></h3>
+    <p id="modalDesc"></p>
+    <button onclick="closeModal()">Fechar</button>
+  </div>
+</div>
+
+<!-- TOAST -->
 <div id="toast"></div>
 
 <script src="script.js"></script>
