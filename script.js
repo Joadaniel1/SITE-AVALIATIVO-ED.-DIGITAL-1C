@@ -1,25 +1,74 @@
-/* ================= */
-/* DADOS */
-/* ================= */
-const courses = ["HTML", "CSS", "JavaScript"];
-const testimonials = ["Muito bom!", "Gostei!", "Top!"];
+/* ===================== */
+/* DADOS MAIS COMPLETOS */
+/* ===================== */
+const courses = [
+  { name: "HTML", level: "Iniciante", desc: "Aprenda estrutura web" },
+  { name: "CSS", level: "Intermediário", desc: "Estilização moderna" },
+  { name: "JavaScript", level: "Avançado", desc: "Lógica e interatividade" }
+];
 
-/* ================= */
-/* RENDER */
-/* ================= */
+const testimonials = [
+  "Muito bom!",
+  "Aprendi rápido!",
+  "Top demais!"
+];
+
+/* ===================== */
+/* RENDER CURSOS */
+/* ===================== */
 const list = document.getElementById("courseList");
 
-courses.forEach(c => {
-  list.innerHTML += `<div class="card">${c}</div>`;
+function renderCourses(data) {
+  list.innerHTML = "";
+
+  data.forEach(c => {
+    list.innerHTML += `
+      <div class="card">
+        <h3>${c.name}</h3>
+        <p>${c.level}</p>
+        <button onclick="openModal('${c.name}','${c.desc}')">
+          Ver mais
+        </button>
+      </div>
+    `;
+  });
+}
+
+renderCourses(courses);
+
+/* ===================== */
+/* BUSCA */
+/* ===================== */
+document.getElementById("search").addEventListener("input", e => {
+  const value = e.target.value.toLowerCase();
+
+  const filtered = courses.filter(c =>
+    c.name.toLowerCase().includes(value)
+  );
+
+  renderCourses(filtered);
 });
 
-/* ================= */
+/* ===================== */
+/* MODAL */
+/* ===================== */
+function openModal(title, desc) {
+  modal.style.display = "flex";
+  modalTitle.innerText = title;
+  modalDesc.innerText = desc;
+}
+
+function closeModal() {
+  modal.style.display = "none";
+}
+
+/* ===================== */
 /* CARROSSEL */
-/* ================= */
+/* ===================== */
 let i = 0;
 
 function show() {
-  document.getElementById("slide").innerText = testimonials[i];
+  slide.innerText = testimonials[i];
 }
 
 function next() {
@@ -34,17 +83,31 @@ function prev() {
 
 show();
 
-/* ================= */
-/* FORM */
-/* ================= */
+/* ===================== */
+/* FORM MELHORADO */
+/* ===================== */
 form.onsubmit = e => {
   e.preventDefault();
-  showToast("Enviado!");
+
+  const inputs = form.querySelectorAll("input");
+
+  if (inputs[0].value.length < 3) {
+    showToast("Nome muito curto");
+    return;
+  }
+
+  if (!inputs[1].value.includes("@")) {
+    showToast("Email inválido");
+    return;
+  }
+
+  showToast("Mensagem enviada com sucesso!");
+  form.reset();
 };
 
-/* ================= */
+/* ===================== */
 /* TOAST */
-/* ================= */
+/* ===================== */
 function showToast(msg) {
   const toast = document.getElementById("toast");
   toast.innerText = msg;
@@ -52,5 +115,16 @@ function showToast(msg) {
 
   setTimeout(() => {
     toast.style.display = "none";
-  }, 2000);
+  }, 2500);
 }
+
+/* ===================== */
+/* SCROLL REVEAL */
+/* ===================== */
+window.addEventListener("scroll", () => {
+  document.querySelectorAll("section").forEach(sec => {
+    if (sec.getBoundingClientRect().top < window.innerHeight - 50) {
+      sec.classList.add("active");
+    }
+  });
+});
