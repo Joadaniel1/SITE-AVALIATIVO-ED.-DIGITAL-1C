@@ -1,57 +1,105 @@
+/* ===================== */
+/* DESIGN SYSTEM (CORES FORTES) */
+/* ===================== */
 :root {
-  --primary: linear-gradient(135deg, #6366f1, #06b6d4);
+  --primary: #6366f1;
+  --secondary: #06b6d4;
+  --accent: #22c55e;
   --bg: #0f172a;
-  --card: rgba(255,255,255,0.05);
-  --text: #fff;
+  --bg-light: #f8fafc;
+  --text: #ffffff;
+  --text-dark: #111;
+  --card: rgba(255, 255, 255, 0.08);
   --radius: 16px;
 }
 
 /* LIGHT MODE */
 body.light {
-  --bg: #f8fafc;
-  --text: #111;
-  --card: #fff;
+  --bg: var(--bg-light);
+  --text: var(--text-dark);
+  --card: #ffffff;
 }
 
+/* RESET */
 body {
   margin: 0;
-  font-family: sans-serif;
-  background: var(--bg);
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
   color: var(--text);
+  transition: 0.4s;
 }
 
-/* CONTAINER */
-.container {
-  width: 90%;
-  max-width: 1100px;
-  margin: auto;
+/* ===================== */
+/* HEADER */
+/* ===================== */
+header {
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(10px);
+  padding: 15px;
 }
 
-/* NAV */
-.nav {
+nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+nav a {
+  color: var(--text);
+  margin-left: 15px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: var(--secondary);
+}
+
+/* ===================== */
 /* HERO */
+/* ===================== */
 .hero {
-  display: grid;
-  gap: 40px;
-  padding: 80px 0;
+  text-align: center;
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #6366f1, #06b6d4);
+  color: white;
 }
 
-.hero-card {
-  background: var(--card);
-  padding: 20px;
+.hero h2 {
+  font-size: 2.5rem;
+}
+
+.hero p {
+  opacity: 0.9;
+}
+
+/* ===================== */
+/* BOTÃO */
+/* ===================== */
+.btn {
+  margin-top: 20px;
+  background: var(--accent);
+  border: none;
+  padding: 14px 24px;
+  color: white;
   border-radius: var(--radius);
-  backdrop-filter: blur(10px);
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
 }
 
-/* GRID EDITÁVEL */
+.btn:hover {
+  transform: scale(1.1);
+  background: #16a34a;
+}
+
+/* ===================== */
+/* GRID (EDITÁVEL) */
+/* ===================== */
 .grid-3 {
   display: grid;
-  gap: 20px;
+  gap: 25px;
+  padding: 40px 0;
 }
 
 @media (min-width: 768px) {
@@ -60,48 +108,76 @@ body {
   }
 }
 
-/* CARD */
+/* ===================== */
+/* CARDS */
+/* ===================== */
 .card {
   background: var(--card);
-  padding: 20px;
+  padding: 25px;
   border-radius: var(--radius);
-  transition: 0.3s;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: 0.4s;
 }
 
 .card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
 }
 
-/* BOTÃO */
-.btn {
-  background: var(--primary);
-  border: none;
-  padding: 12px 20px;
-  color: white;
-  border-radius: var(--radius);
-  cursor: pointer;
-}
-
+/* ===================== */
 /* CARROSSEL */
+/* ===================== */
 .carousel {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  gap: 15px;
 }
 
+.carousel button {
+  background: var(--primary);
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* ===================== */
 /* FORM */
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+/* ===================== */
+form input, form textarea {
+  padding: 12px;
+  border-radius: var(--radius);
+  border: none;
+  outline: none;
 }
 
+form input:focus, textarea:focus {
+  box-shadow: 0 0 0 2px var(--secondary);
+}
+
+/* ===================== */
 /* TOAST */
+/* ===================== */
 #toast {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: #22c55e;
-  padding: 10px;
+  background: var(--accent);
+  padding: 12px 20px;
+  color: white;
+  border-radius: var(--radius);
   display: none;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* ===================== */
+/* FOOTER */
+/* ===================== */
+footer {
+  text-align: center;
+  padding: 20px;
+  opacity: 0.7;
 }
