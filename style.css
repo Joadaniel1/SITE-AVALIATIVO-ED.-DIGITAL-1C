@@ -1,19 +1,16 @@
 :root {
-  --primary: #6366f1;
-  --bg: #fff;
-  --text: #111;
-  --radius: 12px;
-}
-
-body.dark {
+  --primary: linear-gradient(135deg, #6366f1, #06b6d4);
   --bg: #0f172a;
+  --card: rgba(255,255,255,0.05);
   --text: #fff;
+  --radius: 16px;
 }
 
-body.high-contrast {
-  --bg: #000;
-  --text: #fff;
-  --primary: yellow;
+/* LIGHT MODE */
+body.light {
+  --bg: #f8fafc;
+  --text: #111;
+  --card: #fff;
 }
 
 body {
@@ -21,93 +18,82 @@ body {
   font-family: sans-serif;
   background: var(--bg);
   color: var(--text);
-  transition: 0.3s;
+}
+
+/* CONTAINER */
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: auto;
 }
 
 /* NAV */
-nav {
+.nav {
   display: flex;
   justify-content: space-between;
-  padding: 10px;
-}
-
-#menu {
-  display: none;
-}
-
-#menu.active {
-  display: block;
+  align-items: center;
 }
 
 /* HERO */
 .hero {
-  text-align: center;
-  padding: 80px 20px;
+  display: grid;
+  gap: 40px;
+  padding: 80px 0;
+}
+
+.hero-card {
+  background: var(--card);
+  padding: 20px;
+  border-radius: var(--radius);
+  backdrop-filter: blur(10px);
 }
 
 /* GRID EDITÁVEL */
-.grid {
+.grid-3 {
   display: grid;
   gap: 20px;
-  grid-template-columns: 1fr;
 }
 
 @media (min-width: 768px) {
-  .grid {
+  .grid-3 {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 /* CARD */
 .card {
+  background: var(--card);
   padding: 20px;
   border-radius: var(--radius);
-  background: #eee;
   transition: 0.3s;
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: translateY(-10px);
 }
 
-/* TABS */
-.tabs button.active {
+/* BOTÃO */
+.btn {
   background: var(--primary);
+  border: none;
+  padding: 12px 20px;
   color: white;
-}
-
-.tab-content {
-  display: none;
-}
-
-.tab-content.active {
-  display: block;
-}
-
-/* ACCORDION */
-.acc-content {
-  display: none;
+  border-radius: var(--radius);
+  cursor: pointer;
 }
 
 /* CARROSSEL */
 .carousel {
   display: flex;
-  justify-content: center;
+  align-items: center;
   gap: 10px;
 }
 
-/* MODAL */
-#modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-}
-
-#modal.active {
+/* FORM */
+form {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
 }
 
 /* TOAST */
@@ -115,8 +101,7 @@ nav {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: var(--primary);
-  color: white;
+  background: #22c55e;
   padding: 10px;
   display: none;
 }
