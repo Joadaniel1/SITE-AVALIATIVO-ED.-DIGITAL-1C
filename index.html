@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>EduTech Pro Enterprise</title>
+  <title>EduTech Dev Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -11,29 +11,28 @@
 
 <header class="header">
   <h1>EduTech</h1>
+
   <nav>
-    <a href="#hero">Início</a>
     <a href="#courses">Cursos</a>
     <a href="#dashboard">Dashboard</a>
   </nav>
+
+  <div id="userArea">
+    <button id="loginBtn">Entrar</button>
+  </div>
 </header>
 
 <!-- HERO -->
-<section id="hero" class="section hero">
-  <h2>Plataforma Profissional 🚀</h2>
-  <p>Experiência nível empresa</p>
-  <button onclick="openLogin()">Entrar</button>
+<section class="hero">
+  <h2>Projeto nível portfólio 🚀</h2>
+  <p>Simulação de sistema real</p>
 </section>
 
-<!-- MÉTRICAS -->
-<section class="section stats">
-  <div class="stat">+10k alunos</div>
-  <div class="stat">+500 aulas</div>
-  <div class="stat">98% satisfação</div>
-</section>
+<!-- LOADING -->
+<div id="loading">Carregando...</div>
 
 <!-- CURSOS -->
-<section id="courses" class="section">
+<section id="courses">
   <h2>Cursos</h2>
 
   <input id="search" placeholder="Buscar..." />
@@ -47,17 +46,23 @@
 </section>
 
 <!-- DASHBOARD -->
-<section id="dashboard" class="section">
-  <h2>Seus Favoritos ⭐</h2>
+<section id="dashboard">
+  <h2>Dashboard</h2>
+
+  <p id="welcome"></p>
+  <p>Total favoritos: <span id="count"></span></p>
+
   <div id="favList" class="grid"></div>
+
+  <button onclick="logout()">Sair</button>
 </section>
 
-<!-- LOGIN -->
-<div id="login">
+<!-- LOGIN MODAL -->
+<div id="loginModal">
   <div class="box">
     <h3>Login</h3>
-    <input id="user" placeholder="Usuário">
-    <button onclick="login()">Entrar</button>
+    <input id="userInput" placeholder="Seu nome">
+    <button onclick="handleLogin()">Entrar</button>
   </div>
 </div>
 
