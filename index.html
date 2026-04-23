@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>EduTech Pro</title>
+  <title>EduTech Pro Enterprise</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -14,52 +14,50 @@
   <nav>
     <a href="#hero">Início</a>
     <a href="#courses">Cursos</a>
-    <a href="#contact">Contato</a>
+    <a href="#dashboard">Dashboard</a>
   </nav>
 </header>
 
 <!-- HERO -->
-<section id="hero" class="section">
-  <h2>Aprenda com estilo 🚀</h2>
-  <p>Plataforma moderna e funcional</p>
-  <button onclick="scrollToCourses()">Explorar Cursos</button>
+<section id="hero" class="section hero">
+  <h2>Plataforma Profissional 🚀</h2>
+  <p>Experiência nível empresa</p>
+  <button onclick="openLogin()">Entrar</button>
+</section>
+
+<!-- MÉTRICAS -->
+<section class="section stats">
+  <div class="stat">+10k alunos</div>
+  <div class="stat">+500 aulas</div>
+  <div class="stat">98% satisfação</div>
 </section>
 
 <!-- CURSOS -->
 <section id="courses" class="section">
   <h2>Cursos</h2>
 
-  <input id="search" placeholder="Buscar curso..." />
+  <input id="search" placeholder="Buscar..." />
+  <select id="filter">
+    <option value="">Todos</option>
+    <option value="Iniciante">Iniciante</option>
+    <option value="Avançado">Avançado</option>
+  </select>
 
   <div id="courseList" class="grid"></div>
 </section>
 
-<!-- CARROSSEL -->
-<section id="testimonials" class="section">
-  <h2>Depoimentos</h2>
-  <div class="carousel">
-    <button onclick="prev()">◀</button>
-    <div id="slide"></div>
-    <button onclick="next()">▶</button>
-  </div>
+<!-- DASHBOARD -->
+<section id="dashboard" class="section">
+  <h2>Seus Favoritos ⭐</h2>
+  <div id="favList" class="grid"></div>
 </section>
 
-<!-- CONTATO -->
-<section id="contact" class="section">
-  <h2>Contato</h2>
-  <form id="form">
-    <input id="name" placeholder="Nome" required>
-    <input id="email" placeholder="Email" required>
-    <button>Enviar</button>
-  </form>
-</section>
-
-<!-- MODAL -->
-<div id="modal">
-  <div class="modal-box">
-    <h3 id="modalTitle"></h3>
-    <p id="modalDesc"></p>
-    <button onclick="closeModal()">Fechar</button>
+<!-- LOGIN -->
+<div id="login">
+  <div class="box">
+    <h3>Login</h3>
+    <input id="user" placeholder="Usuário">
+    <button onclick="login()">Entrar</button>
   </div>
 </div>
 
