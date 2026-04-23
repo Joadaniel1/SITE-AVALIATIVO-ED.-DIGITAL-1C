@@ -1,114 +1,129 @@
-/* ===================== */
-/* FAKE API */
-/* ===================== */
-const courses = [
-  { title: "HTML", level: "Iniciante" },
-  { title: "CSS", level: "Intermediário" },
-  { title: "JavaScript", level: "Avançado" }
-];
+/* ================= */
+/* DARK MODE SALVO */
+/* ================= */
+if (localStorage.getItem("dark") === "true") {
+  document.body.classList.add("dark");
+}
 
-/* ===================== */
-/* RENDER */
-/* ===================== */
-const container = document.getElementById("courses-container");
+function toggleDark() {
+  document.body.classList.toggle("dark");
+  localStorage.setItem("dark", document.body.classList.contains("dark"));
+}
 
-function renderCourses(list) {
-  container.innerHTML = "";
-  list.forEach(c => {
-    container.innerHTML += `
-      <div class="card">
-        <h3>${c.title}</h3>
-        <p>${c.level}</p>
-      </div>
-    `;
+/* ================= */
+/* MENU */
+/* ================= */
+menuBtn.onclick = () => menu.classList.toggle("active");
+
+/* ================= */
+/* FAKE API + LOADING */
+/* ================= */
+const coursesDiv = document.getElementById("courses");
+
+async function loadCourses() {
+  coursesDiv.innerHTML = "Carregando...";
+
+  await new Promise(r => setTimeout(r, 1000));
+
+  const data = [
+    { name: "HTML" },
+    { name: "CSS" },
+    { name: "JS" }
+  ];
+
+  coursesDiv.innerHTML = "";
+
+  data.forEach(c => {
+    coursesDiv.innerHTML += `<div class="card">${c.name}</div>`;
   });
 }
 
-renderCourses(courses);
+loadCourses();
 
-/* ===================== */
-/* FILTRO */
-/* ===================== */
-document.getElementById("filter").addEventListener("input", e => {
-  const value = e.target.value.toLowerCase();
-  const filtered = courses.filter(c =>
-    c.title.toLowerCase().includes(value)
-  );
-  renderCourses(filtered);
+/* ================= */
+/* CARROSSEL AUTO */
+/* ================= */
+const slides = ["Top curso!", "Muito bom!", "Recomendo"];
+let i = 0;
+
+function show() {
+  slide.innerText = slides[i];
+}
+
+function next() {
+  i = (i + 1) % slides.length;
+  show();
+}
+
+function prev() {
+  i = (i - 1 + slides.length) % slides.length;
+  show();
+}
+
+setInterval(next, 3000);
+show();
+
+/* ================= */
+/* TABS */
+/* ================= */
+document.querySelectorAll(".tab").forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll(".tab").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
+
+    btn.classList.add("active");
+    document.getElementById("tab-" + btn.dataset.tab).classList.add("active");
+  };
 });
 
-/* ===================== */
-/* MENU MOBILE */
-/* ===================== */
-document.querySelector(".menu-toggle").onclick = () => {
-  document.querySelector(".menu").classList.toggle("active");
+/* ================= */
+/* ACCORDION */
+/* ================= */
+document.querySelectorAll(".acc").forEach(btn => {
+  btn.onclick = () => {
+    const c = btn.nextElementSibling;
+    c.style.display = c.style.display === "block" ? "none" : "block";
+  };
+});
+
+/* ================= */
+/* MODAL */
+/* ================= */
+function openModal() {
+  modal.classList.add("active");
+}
+
+function closeModal() {
+  modal.classList.remove("active");
+}
+
+/* ================= */
+/* FORM */
+/* ================= */
+form.onsubmit = e => {
+  e.preventDefault();
+  showToast("Enviado com sucesso!");
 };
 
-/* ===================== */
-/* DARK MODE */
-/* ===================== */
-function toggleDarkMode() {
-  document.body.classList.toggle("dark");
+/* ================= */
+/* TOAST */
+/* ================= */
+function showToast(msg) {
+  toast.innerText = msg;
+  toast.style.display = "block";
+  setTimeout(() => toast.style.display = "none", 3000);
 }
 
-/* ===================== */
-/* CONTRASTE */
-/* ===================== */
-function toggleContrast() {
-  document.body.classList.toggle("high-contrast");
-}
-
-/* ===================== */
-/* FONTE */
-/* ===================== */
+/* ================= */
+/* ACESSIBILIDADE */
+/* ================= */
 let size = 16;
-function changeFontSize(step) {
-  size += step;
+
+function fontSize(s) {
+  size += s;
   document.body.style.fontSize = size + "px";
 }
 
-/* ===================== */
-/* FORM VALIDAÇÃO */
-/* ===================== */
-document.getElementById("form").addEventListener("submit", e => {
-  e.preventDefault();
-
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-
-  if (name.length < 3) {
-    showToast("Nome inválido");
-    return;
-  }
-
-  if (!email.includes("@")) {
-    showToast("Email inválido");
-    return;
-  }
-
-  showToast("Mensagem enviada!");
-});
-
-/* ===================== */
-/* TOAST */
-/* ===================== */
-function showToast(msg) {
-  const toast = document.getElementById("toast");
-  toast.innerText = msg;
-  toast.style.display = "block";
-
-  setTimeout(() => {
-    toast.style.display = "none";
-  }, 3000);
+function toggleContrast() {
+  document.body.classList.toggle("high-contrast");
 }
-
-/* ===================== */
-/* SCROLL REVEAL */
-/* ===================== */
-window.addEventListener("scroll", () => {
-  document.querySelectorAll("section").forEach(sec => {
-    if (sec.getBoundingClientRect().top < window.innerHeight - 50) {
-      sec.classList.add("active");
-    }
-  });
-});
